@@ -1,0 +1,14 @@
+{
+  "name": "fer202_2",
+  "version": "1.0.1",
+  "description": "Introduction NodeJS Project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "ThoPN3",
+  "license": "ISC"
+}
