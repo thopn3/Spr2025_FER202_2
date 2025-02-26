@@ -1,21 +1,27 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-function Product(){
+function Product() {
     const [products, setProducts] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         axios.get("http://localhost:9999/products")
             .then(result => setProducts(result.data))
     }, []);
 
     return (
         <Container fluid>
+            <Row className="mb-3" style={{textAlign:"right"}}>
+                <Col>
+                    <Link to={'/products/create'}>Create new Product</Link>
+                </Col>
+            </Row>
             <Row>
                 <Col>
                     <h1>Product List</h1>
-                    <Table hovered bordered striped>
+                    <Table hover bordered striped>
                         <thead>
                             <tr>
                                 <th>No.</th>
@@ -29,14 +35,18 @@ function Product(){
                             {
                                 products?.map((p, index) => (
                                     <tr key={p?.id}>
-                                        <td>{index+1}</td>
-                                        <td>{p?.name}</td>
+                                        <td>{index + 1}</td>
+                                        <td>
+                                            <Link to={'/products/' + p?.id}>
+                                                {p?.name}
+                                            </Link>
+                                        </td>
                                         <td>{p?.price.toFixed(1)}</td>
                                         <td>
                                             <ul>
-                                            {
-                                                p?.category?.map(c =>(<li>{c}</li>))
-                                            }
+                                                {
+                                                    p?.category?.map(c => (<li>{c}</li>))
+                                                }
                                             </ul>
                                         </td>
                                         <td>
