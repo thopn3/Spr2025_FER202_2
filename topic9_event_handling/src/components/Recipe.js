@@ -3,6 +3,8 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 function Recipe() {
     const [recipes, setRecipes] = useState([]);
     const [users, setUsers] = useState([]);
+    const [tags, setTags] = useState("");
+
 
     useEffect(() => {
         fetch("https://dummyjson.com/recipes")
@@ -19,6 +21,10 @@ function Recipe() {
             })
             .catch(err => console.error(err.message));
     }, []);
+
+    // Lấy danh sách các tags và loại bỏ giá trị trùng lặp
+    const uniqueTags = [...new Set(recipes.flatMap(recipe => recipe.tags))];
+
     return (
         <Container fluid>
             <Row>
@@ -49,7 +55,19 @@ function Recipe() {
                         </Row>
                     </Container>
                 </Col>
-                <Col md={2} style={{ border: "1px solid gray" }}>Right</Col>
+                <Col md={2} style={{ border: "1px solid gray" }}>
+                    <Container>
+                        <Row>
+                            <Col>
+                                {
+                                    uniqueTags?.map(t => (
+                                        <li>{t}</li>
+                                    ))
+                                }
+                            </Col>
+                        </Row>
+                    </Container>
+                </Col>
             </Row>
             <Row>
                 <Col>Footer</Col>
