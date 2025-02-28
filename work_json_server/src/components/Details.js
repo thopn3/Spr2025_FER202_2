@@ -9,7 +9,7 @@ function Details() {
 
     useEffect(() => {
         try {
-            axios.get("http://localhost:9999/products/L4M")
+            axios.get("http://localhost:9999/products/"+id)
                 .then(result => setProduct(result.data));
         } catch (error) {
             console.error(error);

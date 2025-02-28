@@ -1,68 +1,76 @@
 {
-    "customers": [
-        {
-            "id": "X7B",
-            "name": "Nguyen Van A",
-            "phone": 123456789,
-            "address": "123 Nguyen Trai, Hanoi",
-            "email": "nguyenvana@example.com",
-            "password": "aB3xYz9PqW"
-        },
-        {
-            "id": "M2K",
-            "name": "Tran Thi B",
-            "phone": 987654321,
-            "address": "456 Le Loi, Ho Chi Minh City",
-            "email": "tranthib@example.com",
-            "password": "Zx8pLmQwEr"
-        }
-    ],
-    "products": [
-        {
-            "id": "A1B",
-            "name": "Laptop Dell XPS",
-            "price": 1299.99,
-            "category": [
-                "Electronics",
-                "Computers"
-            ]
-        },
-        {
-            "id": "X9Z",
-            "name": "Smartphone Samsung Galaxy",
-            "price": 899.99,
-            "category": [
-                "Electronics",
-                "Mobile Phones"
-            ]
-        },
-        {
-            "id": "L4M",
-            "name": "Wireless Headphones",
-            "price": 199.99,
-            "category": [
-                "Electronics",
-                "Audio"
-            ]
-        },
-        {
-            "id": "Q8Y",
-            "name": "Running Shoes",
-            "price": 129.99,
-            "category": [
-                "Fashion",
-                "Sports"
-            ]
-        },
-        {
-            "id": "T3P",
-            "name": "Coffee Maker",
-            "price": 79.99,
-            "category": [
-                "Home Appliances",
-                "Kitchen"
-            ]
-        }
-    ],
-    "orders": []
+  "customers": [
+    {
+      "id": "X7B",
+      "name": "Nguyen Van A",
+      "phone": 123456789,
+      "address": "123 Nguyen Trai, Hanoi",
+      "email": "nguyenvana@example.com",
+      "password": "aB3xYz9PqW"
+    },
+    {
+      "id": "M2K",
+      "name": "Tran Thi B",
+      "phone": 987654321,
+      "address": "456 Le Loi, Ho Chi Minh City",
+      "email": "tranthib@example.com",
+      "password": "Zx8pLmQwEr"
+    }
+  ],
+  "products": [
+    {
+      "id": "A1B",
+      "name": "Laptop Dell XPS",
+      "price": 1299.99,
+      "category": [
+        "Electronics",
+        "Computers"
+      ]
+    },
+    {
+      "id": "X9Z",
+      "name": "Smartphone Samsung Galaxy",
+      "price": 899.99,
+      "category": [
+        "Electronics",
+        "Mobile Phones"
+      ]
+    },
+    {
+      "id": "L4M",
+      "name": "Wireless Headphones",
+      "price": 199.99,
+      "category": [
+        "Electronics",
+        "Audio"
+      ]
+    },
+    {
+      "id": "Q8Y",
+      "name": "Running Shoes",
+      "price": 129.99,
+      "category": [
+        "Fashion",
+        "Sports"
+      ]
+    },
+    {
+      "id": "T3P",
+      "name": "Coffee Maker",
+      "price": 79.99,
+      "category": [
+        "Home Appliances",
+        "Kitchen"
+      ]
+    },
+    {
+      "id": "1099",
+      "name": "Test",
+      "price": 20.5,
+      "category": [
+        "Computers"
+      ]
+    }
+  ],
+  "orders": []
 }

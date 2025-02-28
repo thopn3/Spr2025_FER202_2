@@ -1,14 +1,17 @@
 import { Button, Container, Form } from "react-bootstrap";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CreateProduct() {
     const [products, setProducts] = useState([]);
     const [msgPName, setMsgPName] = useState("");
     const [msgPPrice, setMsgPPrice] = useState("");
-    const pName = useRef(null);
-    const pPrice = useRef(null);
-    const category = useRef(null);
+    const pName = useRef("");
+    const pPrice = useRef(0);
+    const category = useRef("");
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get("http://localhost:9999/products")
@@ -23,7 +26,7 @@ function CreateProduct() {
             flag=false;
             setMsgPName("Product name is required");
         }
-        if(pPrice.current.value==""){
+        if(pPrice.current.value==0){
             flag=false;
             setMsgPPrice("Price is required");
         }
@@ -38,6 +41,19 @@ function CreateProduct() {
     const handleSave = () => {
         if(validInput()==true){
             // Lưu dữ liệu vào DB
+            axios.post(
+                "http://localhost:9999/products", 
+                {
+                    name: pName.current.value,
+                    price: parseFloat(pPrice.current.value),
+                    category: [category.current.value]
+                }
+            )
+            .then(()=>{
+                alert("Create successfully!");
+                navigate('/products');
+            })
+            .catch(err => console.error(err));
         }
     }
 
