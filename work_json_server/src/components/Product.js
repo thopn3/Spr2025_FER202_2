@@ -21,10 +21,13 @@ function Product() {
                 const product = res.data;
                 setCart(prevCart => {
                     let updatedCart = [...prevCart];
-                    let existItem = updatedCart.find(item => item.id === product.id);
+                    let existItemIndex = updatedCart.findIndex(item => item.id === product.id);
     
-                    if (existItem) {
-                        existItem.quantity += 1;
+                    if (existItemIndex !== -1) {
+                        updatedCart[existItemIndex] = {
+                            ...updatedCart[existItemIndex],
+                            quantity: updatedCart[existItemIndex].quantity + 1
+                        };
                     } else {
                         updatedCart.push({
                             id: product.id,
