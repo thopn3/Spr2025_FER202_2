@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 
 function Product() {
     const [products, setProducts] = useState([]);
-    const [product, setProduct] = useState(null);
-    const [cart, setCart] = useState([]);
+    
+    const [cart, setCart] = useState(() => {
+        return JSON.parse(localStorage.getItem("cart")) || [];
+    });
 
     useEffect(() => {
         axios.get("http://localhost:9999/products")
@@ -14,39 +16,30 @@ function Product() {
     }, []);
 
     const handleAddCart = (id) => {
-        axios.get("http://localhost:9999/products/"+id)
-            .then(res => setProduct(res.data))
-            .catch(err=>console.error(err));
-        
-        // Kiểm tra product != null
-        if(product!=null){
-            // Kiểm tra nếu trong cart đã có sản phẩm trước đó thì tăng quantity. Ngược lại, thêm vào cart
-            if(localStorage.getItem('cart')!=null){
-                setCart(JSON.parse(localStorage.getItem('cart')));
-
-                // Duyệt từng item trong cart, so sánh id = id (tham số) không
-                cart?.map(item => {
-                    if(item.id == id){
-                        item.quantity++; // Tăng số lượng nếu đã tồn tại
-                    }else{
-                        // Thêm item mới vào cart
-                        const newItem = {id:product.id,name:product.name,price:product.price,quantity:1};
-                        setCart([...cart, newItem]);
+        axios.get(`http://localhost:9999/products/${id}`)
+            .then(res => {
+                const product = res.data;
+                setCart(prevCart => {
+                    let updatedCart = [...prevCart];
+                    let existItem = updatedCart.find(item => item.id === product.id);
+    
+                    if (existItem) {
+                        existItem.quantity += 1;
+                    } else {
+                        updatedCart.push({
+                            id: product.id,
+                            name: product.name,
+                            price: product.price,
+                            quantity: 1
+                        });
                     }
+    
+                    localStorage.setItem("cart", JSON.stringify(updatedCart));
+                    return updatedCart;
                 });
-                // Cập nhật lại localStorage
-                localStorage.setItem('cart', JSON.stringify(cart));
-                
-            }else{
-                // Trường hợp chưa có key 'cart' trong localStorage
-                localStorage.setItem('cart', JSON.stringify(
-                    [
-                        {id:product.id,name:product.name,price:product.price,quantity:1}
-                    ]
-                ));
-            }
-        }
-    }
+            })
+            .catch(err => console.error(err));
+    };
 
     return (
         <Container fluid>
